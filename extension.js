@@ -95,7 +95,7 @@ class Dock extends Dash.Dash {
 
         Main.layoutManager.addTopChrome(this);
 
-        this.showAppsButton.set_toggle_mode(false);
+        this.showAppsButton.toggle_mode = false;
         this._dashContainer.set_track_hover(true);
         this._dashContainer.set_reactive(true);
         this.show();
@@ -106,7 +106,7 @@ class Dock extends Dash.Dash {
 
         this._dashContainer.connectObject('notify::hover', this._on_dock_hover.bind(this), this);
         this._dashContainer.connectObject('scroll-event', (actor, event) => Main.wm.handleWorkspaceScroll(event), this);
-        this.showAppsButton.connectObject('button-release-event', () => Main.overview.showApps(), this);
+        this.showAppsButton.connectObject('clicked', () => {Main.overview.showApps();}, this);
 
         Main.overview.connectObject('item-drag-begin', () => {this._dragging = true;}, this);
         Main.overview.connectObject('item-drag-end', () => {this._dragging = false;}, this);
